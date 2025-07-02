@@ -1,10 +1,12 @@
 
 import React, { useState, useRef } from 'react';
-import { Folder } from 'lucide-react';
+import { Folder, File, Trash2 } from 'lucide-react';
 
 interface DraggableFolderProps {
   id: string;
   name: string;
+  subtitle?: string;
+  type: 'folder' | 'file' | 'trash';
   initialX: number;
   initialY: number;
 }
@@ -12,6 +14,8 @@ interface DraggableFolderProps {
 const DraggableFolder: React.FC<DraggableFolderProps> = ({ 
   id, 
   name, 
+  subtitle,
+  type,
   initialX, 
   initialY 
 }) => {
@@ -54,6 +58,17 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
     }
   }, [isDragging, dragStart]);
 
+  const getIcon = () => {
+    switch (type) {
+      case 'file':
+        return <File size={48} className="text-white drop-shadow-sm" fill="currentColor" />;
+      case 'trash':
+        return <Trash2 size={48} className="text-gray-500 drop-shadow-sm" />;
+      default:
+        return <Folder size={48} className="text-blue-400 drop-shadow-sm" fill="currentColor" />;
+    }
+  };
+
   return (
     <div
       ref={folderRef}
@@ -66,16 +81,19 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
       }}
       onMouseDown={handleMouseDown}
     >
-      <div className="p-2 rounded-lg hover:bg-blue-100 hover:bg-opacity-50 transition-colors">
-        <Folder 
-          size={64} 
-          className="text-blue-500 drop-shadow-sm" 
-          fill="currentColor" 
-        />
+      <div className="p-2 rounded-lg hover:bg-blue-100 hover:bg-opacity-30 transition-colors">
+        {getIcon()}
       </div>
-      <span className="text-sm text-gray-800 bg-white bg-opacity-80 px-2 py-1 rounded shadow-sm mt-1 text-center max-w-20 break-words">
-        {name}
-      </span>
+      <div className="text-center">
+        <span className="text-xs text-gray-800 bg-white bg-opacity-70 px-2 py-1 rounded shadow-sm block max-w-24 break-words">
+          {name}
+        </span>
+        {subtitle && (
+          <span className="text-xs text-gray-600 bg-white bg-opacity-60 px-1 rounded shadow-sm block max-w-24 break-words mt-1">
+            {subtitle}
+          </span>
+        )}
+      </div>
     </div>
   );
 };
