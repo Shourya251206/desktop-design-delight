@@ -1,10 +1,12 @@
 
 import React, { useState } from 'react';
-import { Folder, File, Trash2 } from 'lucide-react';
 import DraggableFolder from '@/components/DraggableFolder';
 import StickyNoteComponent from '@/components/StickyNoteComponent';
 import MacHeader from '@/components/MacHeader';
 import MacDock from '@/components/MacDock';
+import MacWindow from '@/components/MacWindow';
+import ProjectSidebar from '@/components/ProjectSidebar';
+import ProjectDetail from '@/components/ProjectDetail';
 
 const Index = () => {
   const [folders] = useState([
@@ -16,6 +18,31 @@ const Index = () => {
     { id: 'project4', name: 'Project 04', subtitle: '(Amazon)', x: 1230, y: 450, type: 'folder' as const },
     { id: 'trash', name: "Don't Look", x: 1370, y: 500, type: 'trash' as const },
   ]);
+
+  const [openWindow, setOpenWindow] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string>('');
+
+  const handleFolderClick = (folderId: string) => {
+    if (folderId.startsWith('project')) {
+      setOpenWindow(folderId);
+      setActiveSection(folderId);
+    }
+  };
+
+  const handleCloseWindow = () => {
+    setOpenWindow(null);
+    setActiveSection('');
+  };
+
+  const getWindowTitle = (windowId: string) => {
+    const titles = {
+      project1: 'AbsolutMess (Project 01)',
+      project2: 'Simplingo (Project 02)', 
+      project3: 'Leafpress (Project 03)',
+      project4: 'Amazon (Project 04)'
+    };
+    return titles[windowId as keyof typeof titles] || windowId;
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-200 via-gray-100 to-gray-300 relative overflow-hidden" 
@@ -52,11 +79,27 @@ const Index = () => {
           type={item.type}
           initialX={item.x}
           initialY={item.y}
+          onClick={handleFolderClick}
         />
       ))}
       
       {/* Mac Dock */}
       <MacDock />
+
+      {/* Project Window */}
+      {openWindow && (
+        <MacWindow
+          title={getWindowTitle(openWindow)}
+          subtitle="Visual Design & UI"
+          onClose={handleCloseWindow}
+        >
+          <ProjectSidebar 
+            activeProject={activeSection}
+            onSectionClick={setActiveSection}
+          />
+          <ProjectDetail projectId={openWindow} />
+        </MacWindow>
+      )}
     </div>
   );
 };

@@ -9,6 +9,7 @@ interface DraggableFolderProps {
   type: 'folder' | 'file' | 'trash';
   initialX: number;
   initialY: number;
+  onClick?: (id: string) => void;
 }
 
 const DraggableFolder: React.FC<DraggableFolderProps> = ({ 
@@ -17,16 +18,19 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
   subtitle,
   type,
   initialX, 
-  initialY 
+  initialY,
+  onClick
 }) => {
   const [position, setPosition] = useState({ x: initialX, y: initialY });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [hasMoved, setHasMoved] = useState(false);
   const folderRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsDragging(true);
+    setHasMoved(false);
     setDragStart({
       x: e.clientX - position.x,
       y: e.clientY - position.y,
@@ -36,6 +40,7 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
   const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging) return;
     
+    setHasMoved(true);
     setPosition({
       x: e.clientX - dragStart.x,
       y: e.clientY - dragStart.y,
@@ -44,6 +49,11 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
 
   const handleMouseUp = () => {
     setIsDragging(false);
+    
+    // If the mouse didn't move much, treat it as a click
+    if (!hasMoved && onClick) {
+      onClick(id);
+    }
   };
 
   React.useEffect(() => {
@@ -56,7 +66,7 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
         document.removeEventListener('mouseup', handleMouseUp);
       };
     }
-  }, [isDragging, dragStart]);
+  }, [isDragging, dragStart, hasMoved]);
 
   const getIcon = () => {
     switch (type) {
