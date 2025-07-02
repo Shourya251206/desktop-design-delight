@@ -17,7 +17,7 @@ const MacHeader: React.FC = () => {
       {/* Left side */}
       <div className="flex items-center space-x-4">
         <Apple size={14} className="text-gray-800" />
-        <span className="font-semibold">Inika Jhamvar's Portfolio</span>
+        <span className="font-semibold">Shourya Rathi's Portfolio</span>
         <span className="hover:bg-gray-200 px-2 py-1 rounded cursor-pointer">Contact</span>
         <span className="hover:bg-gray-200 px-2 py-1 rounded cursor-pointer">Resume</span>
       </div>

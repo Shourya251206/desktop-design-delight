@@ -8,13 +8,13 @@ import MacDock from '@/components/MacDock';
 
 const Index = () => {
   const [folders] = useState([
-    { id: 'resume', name: 'Resume.pdf', x: 150, y: 400, type: 'file' },
-    { id: 'about', name: 'About Me', x: 280, y: 500, type: 'folder' },
-    { id: 'project1', name: 'Project 01', subtitle: '(AbsolutMess)', x: 1250, y: 240, type: 'folder' },
-    { id: 'project2', name: 'Project 02', subtitle: '(Simplingo)', x: 1310, y: 130, type: 'folder' },
-    { id: 'project3', name: 'Project 03', subtitle: '(Leafpress)', x: 1310, y: 350, type: 'folder' },
-    { id: 'project4', name: 'Project 04', subtitle: '(Amazon)', x: 1230, y: 450, type: 'folder' },
-    { id: 'trash', name: "Don't Look", x: 1370, y: 500, type: 'trash' },
+    { id: 'resume', name: 'Resume.pdf', x: 150, y: 400, type: 'file' as const },
+    { id: 'about', name: 'About Me', x: 280, y: 500, type: 'folder' as const },
+    { id: 'project1', name: 'Project 01', subtitle: '(AbsolutMess)', x: 1250, y: 240, type: 'folder' as const },
+    { id: 'project2', name: 'Project 02', subtitle: '(Simplingo)', x: 1310, y: 130, type: 'folder' as const },
+    { id: 'project3', name: 'Project 03', subtitle: '(Leafpress)', x: 1310, y: 350, type: 'folder' as const },
+    { id: 'project4', name: 'Project 04', subtitle: '(Amazon)', x: 1230, y: 450, type: 'folder' as const },
+    { id: 'trash', name: "Don't Look", x: 1370, y: 500, type: 'trash' as const },
   ]);
 
   return (
