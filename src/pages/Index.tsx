@@ -7,6 +7,7 @@ import MacDock from '@/components/MacDock';
 import MacWindow from '@/components/MacWindow';
 import ProjectSidebar from '@/components/ProjectSidebar';
 import ProjectDetail from '@/components/ProjectDetail';
+import AboutMeWindow from '@/components/AboutMeWindow';
 
 const Index = () => {
   const [folders] = useState([
@@ -21,17 +22,24 @@ const Index = () => {
 
   const [openWindow, setOpenWindow] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>('');
+  const [showAboutMe, setShowAboutMe] = useState(false);
 
   const handleFolderClick = (folderId: string) => {
     if (folderId.startsWith('project')) {
       setOpenWindow(folderId);
       setActiveSection(folderId);
+    } else if (folderId === 'about') {
+      setShowAboutMe(true);
     }
   };
 
   const handleCloseWindow = () => {
     setOpenWindow(null);
     setActiveSection('');
+  };
+
+  const handleCloseAboutMe = () => {
+    setShowAboutMe(false);
   };
 
   const getWindowTitle = (windowId: string) => {
@@ -99,6 +107,11 @@ const Index = () => {
           />
           <ProjectDetail projectId={openWindow} />
         </MacWindow>
+      )}
+
+      {/* About Me Windows */}
+      {showAboutMe && (
+        <AboutMeWindow onClose={handleCloseAboutMe} />
       )}
     </div>
   );
