@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 
 const StickyNoteComponent: React.FC = () => {
@@ -8,9 +9,10 @@ const StickyNoteComponent: React.FC = () => {
 
   const todoItems = [
     { text: 'Land my dream ML job', completed: false },
+    { text: 'Move to the US', completed: true },
     { text: 'Build that banger Spotify playlist', completed: false },
     { text: 'Travel some place new every year', completed: false },
-    { text: 'Learn tennis and get really good at it', completed: false }
+    { text: 'Learn tennis and get really good at it', completed: true }
   ];
 
   const handleMouseDown = (e: React.MouseEvent) => {
