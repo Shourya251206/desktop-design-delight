@@ -3,22 +3,61 @@ import React from 'react';
 import { Folder, Globe, Mail, MessageCircle, Calendar, Camera, Music, Settings, AppWindow } from 'lucide-react';
 
 const MacDock: React.FC = () => {
-  const handleSpotifyClick = () => {
-    // Open Spotify with a favorite song
-    const spotifyUrl = 'https://open.spotify.com/track/4iV5W9uYEdYUVa79Axb7Rh'; // Example: Never Gonna Give You Up
-    window.open(spotifyUrl, '_blank');
-  };
-
   const dockApps = [
-    { name: 'Finder', icon: Folder, color: 'text-blue-500', onClick: () => {} },
-    { name: 'Safari', icon: Globe, color: 'text-blue-600', onClick: () => {} },
-    { name: 'Mail', icon: Mail, color: 'text-blue-500', onClick: () => {} },
-    { name: 'Messages', icon: MessageCircle, color: 'text-green-500', onClick: () => {} },
-    { name: 'Calendar', icon: Calendar, color: 'text-red-500', onClick: () => {} },
-    { name: 'Photos', icon: Camera, color: 'text-yellow-500', onClick: () => {} },
-    { name: 'Spotify', icon: Music, color: 'text-green-600', onClick: handleSpotifyClick },
-    { name: 'App Store', icon: AppWindow, color: 'text-blue-500', onClick: () => {} },
-    { name: 'System Preferences', icon: Settings, color: 'text-gray-600', onClick: () => {} },
+    { 
+      name: 'Finder', 
+      icon: Folder, 
+      color: 'text-blue-500', 
+      onClick: () => window.open('https://icloud.com', '_blank')
+    },
+    { 
+      name: 'Safari', 
+      icon: Globe, 
+      color: 'text-blue-600', 
+      onClick: () => window.open('https://google.com', '_blank')
+    },
+    { 
+      name: 'Mail', 
+      icon: Mail, 
+      color: 'text-blue-500', 
+      onClick: () => window.open('mailto:shouryarathi2006@gmail.com', '_blank')
+    },
+    { 
+      name: 'Messages', 
+      icon: MessageCircle, 
+      color: 'text-green-500', 
+      onClick: () => window.open('https://messages.google.com/web', '_blank')
+    },
+    { 
+      name: 'Calendar', 
+      icon: Calendar, 
+      color: 'text-red-500', 
+      onClick: () => window.open('https://calendar.google.com', '_blank')
+    },
+    { 
+      name: 'Photos', 
+      icon: Camera, 
+      color: 'text-yellow-500', 
+      onClick: () => window.open('https://photos.google.com', '_blank')
+    },
+    { 
+      name: 'Spotify', 
+      icon: Music, 
+      color: 'text-green-600', 
+      onClick: () => window.open('https://open.spotify.com/track/4iV5W9uYEdYUVa79Axb7Rh', '_blank')
+    },
+    { 
+      name: 'App Store', 
+      icon: AppWindow, 
+      color: 'text-blue-500', 
+      onClick: () => window.open('https://apps.apple.com', '_blank')
+    },
+    { 
+      name: 'System Preferences', 
+      icon: Settings, 
+      color: 'text-gray-600', 
+      onClick: () => window.open('https://support.apple.com/guide/mac-help', '_blank')
+    },
   ];
 
   return (

@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 
 const StickyNoteComponent: React.FC = () => {
@@ -8,14 +7,10 @@ const StickyNoteComponent: React.FC = () => {
   const noteRef = useRef<HTMLDivElement>(null);
 
   const todoItems = [
-    { text: 'Land my dream UX job', completed: false },
-    { text: 'Drink water', completed: true },
-    { text: 'Move to the US', completed: false },
-    { text: 'Finish art school without losing my mind', completed: true },
-    { text: 'Build that banger spotify playlist', completed: false },
-    { text: 'World domination', completed: false },
-    { text: 'Get really good at making pasta', completed: true },
-    { text: 'Travel somewhere new every year', completed: false }
+    { text: 'Land my dream ML job', completed: false },
+    { text: 'Build that banger Spotify playlist', completed: false },
+    { text: 'Travel some place new every year', completed: false },
+    { text: 'Learn tennis and get really good at it', completed: false }
   ];
 
   const handleMouseDown = (e: React.MouseEvent) => {

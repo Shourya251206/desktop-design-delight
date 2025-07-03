@@ -25,8 +25,8 @@ const AboutMeWindow: React.FC<AboutMeWindowProps> = ({ onClose }) => {
           </div>
           <div className="w-full h-full bg-gray-100 flex items-center justify-center">
             <img 
-              src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=500&fit=crop"
-              alt="Profile"
+              src="/lovable-uploads/d01cbfd4-0036-4825-81e6-50c02419de8a.png"
+              alt="Shourya at the beach"
               className="w-full h-full object-cover"
             />
           </div>
@@ -69,8 +69,8 @@ const AboutMeWindow: React.FC<AboutMeWindowProps> = ({ onClose }) => {
           </div>
           <div className="w-full h-full bg-gray-100 flex items-center justify-center">
             <img 
-              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=350&h=400&fit=crop"
-              alt="Lifestyle"
+              src="/lovable-uploads/0e070f02-49d7-44df-85d5-4679302c51e2.png"
+              alt="Shourya at Palace of Fine Arts"
               className="w-full h-full object-cover"
             />
           </div>

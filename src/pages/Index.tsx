@@ -30,6 +30,8 @@ const Index = () => {
       setActiveSection(folderId);
     } else if (folderId === 'about') {
       setShowAboutMe(true);
+    } else if (folderId === 'resume') {
+      window.open('https://drive.google.com/file/d/1-zjEnc-WDt9Fo58QCz9d2aLp_tsfSgAs/view?usp=sharing', '_blank');
     }
   };
 
@@ -68,12 +70,16 @@ const Index = () => {
       {/* Sticky Note */}
       <StickyNoteComponent />
       
-      {/* Welcome Text */}
+      {/* Welcome Text with Cool Hover Effect */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-        <h1 className="text-5xl font-light text-gray-700 leading-tight">
-          welcome to my{' '}
-          <span className="font-serif font-normal italic text-6xl text-black">portfolio</span>
-          <span className="text-gray-600">.</span>
+        <h1 className="text-5xl font-light text-gray-700 leading-tight group cursor-pointer">
+          <span className="transition-all duration-500 hover:text-blue-600 hover:scale-110 inline-block hover:rotate-2">welcome</span>{' '}
+          <span className="transition-all duration-500 hover:text-purple-600 hover:scale-110 inline-block hover:-rotate-1">to</span>{' '}
+          <span className="transition-all duration-500 hover:text-green-600 hover:scale-110 inline-block hover:rotate-1">my</span>{' '}
+          <span className="font-serif font-normal italic text-6xl text-black transition-all duration-700 hover:text-transparent hover:bg-gradient-to-r hover:bg-clip-text hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 hover:scale-125 inline-block hover:rotate-3">
+            portfolio
+          </span>
+          <span className="text-gray-600 transition-all duration-300 hover:text-red-500 hover:scale-150 inline-block">.</span>
         </h1>
       </div>
       
