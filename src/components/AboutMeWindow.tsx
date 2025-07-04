@@ -1,5 +1,5 @@
-
 import React, { useState, useRef, useCallback } from 'react';
+import AudioPlayer from './AudioPlayer';
 
 interface DraggableWindowProps {
   children: React.ReactNode;
@@ -215,34 +215,21 @@ const AboutMeWindow: React.FC<AboutMeWindowProps> = ({ onClose }) => {
           />
         </DraggableWindow>
 
-        {/* Spotify Player - Repositioned to avoid congestion */}
+        {/* Music Player - Repositioned to avoid congestion */}
         <DraggableWindow
-          title="Spotify"
+          title="Music Player"
           initialX={650}
           initialY={480}
           width="320px"
-          height="128px"
+          height="160px"
           zIndex={41}
         >
-          <div className="p-4 flex items-center space-x-4 bg-gradient-to-r from-green-800 to-green-600">
-            <div className="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center hover:scale-110 transition-transform">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg"></div>
-            </div>
-            <div className="flex-1">
-              <h3 className="text-white font-semibold text-sm">Blinding Lights</h3>
-              <p className="text-green-200 text-xs">The Weeknd</p>
-              <div className="flex items-center space-x-2 mt-2">
-                <button 
-                  onClick={() => window.open('https://open.spotify.com/track/0VjIjW4GlULA3wGRX8G7YU', '_blank')}
-                  className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform"
-                >
-                  <div className="w-0 h-0 border-l-[6px] border-l-black border-y-[4px] border-y-transparent ml-1"></div>
-                </button>
-                <div className="flex-1 bg-gray-600 h-1 rounded-full">
-                  <div className="bg-white h-1 rounded-full w-1/3 animate-pulse"></div>
-                </div>
-              </div>
-            </div>
+          <div className="p-4">
+            <AudioPlayer
+              audioSrc="/counting-stars.mp3"
+              title="Counting Stars"
+              artist="OneRepublic"
+            />
           </div>
         </DraggableWindow>
       </div>

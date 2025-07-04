@@ -8,6 +8,7 @@ import MacWindow from '@/components/MacWindow';
 import ProjectSidebar from '@/components/ProjectSidebar';
 import ProjectDetail from '@/components/ProjectDetail';
 import AboutMeWindow from '@/components/AboutMeWindow';
+import Background3D from '@/components/Background3D';
 
 const Index = () => {
   const [folders] = useState([
@@ -64,6 +65,9 @@ const Index = () => {
            backgroundSize: '24px 24px'
          }}>
       
+      {/* 3D Background */}
+      <Background3D />
+      
       {/* Mac Header Bar */}
       <MacHeader />
       
@@ -71,7 +75,7 @@ const Index = () => {
       <StickyNoteComponent />
       
       {/* Welcome Text with Cool Hover Effect */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
         <h1 className="text-5xl font-light text-gray-700 leading-tight group cursor-pointer">
           <span className="transition-all duration-500 hover:text-blue-600 hover:scale-110 inline-block hover:rotate-2">welcome</span>{' '}
           <span className="transition-all duration-500 hover:text-purple-600 hover:scale-110 inline-block hover:-rotate-1">to</span>{' '}
