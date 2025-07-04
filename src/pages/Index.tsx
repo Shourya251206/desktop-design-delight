@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import DraggableFolder from '@/components/DraggableFolder';
 import StickyNoteComponent from '@/components/StickyNoteComponent';
@@ -10,7 +9,7 @@ import ProjectDetail from '@/components/ProjectDetail';
 import AboutMeWindow from '@/components/AboutMeWindow';
 import Background3D from '@/components/Background3D';
 import HolographicElements from '@/components/HolographicElements';
-import VoiceRecognition from '@/components/VoiceRecognition';
+import AIVoiceAssistant from '@/components/AIVoiceAssistant';
 import EyeTrackingCursor from '@/components/EyeTrackingCursor';
 import DynamicColorScheme from '@/components/DynamicColorScheme';
 
@@ -79,22 +78,15 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-200 relative overflow-hidden" 
-         style={{
-           backgroundImage: `
-             linear-gradient(rgba(0,0,0,.02) 1px, transparent 1px),
-             linear-gradient(90deg, rgba(0,0,0,.02) 1px, transparent 1px)
-           `,
-           backgroundSize: '32px 32px',
-         }}>
+    <div className="min-h-screen bg-black relative overflow-hidden">
       
       {/* Dynamic Color Scheme Controller */}
       <DynamicColorScheme isPlaying={isPlaying} currentTime={currentTime} />
       
-      {/* Voice Recognition - moved to center bottom */}
-      <VoiceRecognition onCommand={handleVoiceCommand} />
+      {/* AI Voice Assistant - center bottom */}
+      <AIVoiceAssistant onCommand={handleVoiceCommand} />
       
-      {/* Eye Tracking Cursor - simplified */}
+      {/* Simplified Eye Tracking Cursor */}
       <EyeTrackingCursor />
       
       {/* 3D Background - subtle */}
@@ -109,48 +101,43 @@ const Index = () => {
       {/* Sticky Note */}
       <StickyNoteComponent />
       
-      {/* Welcome Text with Eye Tracking */}
+      {/* Welcome Text - updated for dark theme */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
-        <h1 className="text-5xl font-light text-gray-700 leading-tight group cursor-pointer">
+        <h1 className="text-5xl font-light text-white leading-tight group cursor-pointer">
           <span 
-            data-eye-track
-            className="transition-all duration-500 hover:text-blue-600 hover:scale-110 inline-block hover:rotate-2"
-            style={{ color: 'var(--dynamic-primary, #3b82f6)' }}
+            className="transition-all duration-500 hover:text-cyan-400 hover:scale-110 inline-block hover:rotate-2"
+            style={{ color: 'var(--dynamic-primary, #06b6d4)' }}
           >
             welcome
           </span>{' '}
           <span 
-            data-eye-track
-            className="transition-all duration-500 hover:text-purple-600 hover:scale-110 inline-block hover:-rotate-1"
+            className="transition-all duration-500 hover:text-purple-400 hover:scale-110 inline-block hover:-rotate-1"
             style={{ color: 'var(--dynamic-secondary, #8b5cf6)' }}
           >
             to
           </span>{' '}
           <span 
-            data-eye-track
-            className="transition-all duration-500 hover:text-green-600 hover:scale-110 inline-block hover:rotate-1"
-            style={{ color: 'var(--dynamic-accent, #06b6d4)' }}
+            className="transition-all duration-500 hover:text-green-400 hover:scale-110 inline-block hover:rotate-1"
+            style={{ color: 'var(--dynamic-accent, #10b981)' }}
           >
             my
           </span>{' '}
           <span 
-            data-eye-track
-            className="font-serif font-normal italic text-6xl text-black transition-all duration-700 hover:text-transparent hover:bg-gradient-to-r hover:bg-clip-text hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 hover:scale-125 inline-block hover:rotate-3"
+            className="font-serif font-normal italic text-6xl text-white transition-all duration-700 hover:text-transparent hover:bg-gradient-to-r hover:bg-clip-text hover:from-cyan-400 hover:via-purple-400 hover:to-blue-400 hover:scale-125 inline-block hover:rotate-3"
           >
             portfolio
           </span>
           <span 
-            data-eye-track
-            className="text-gray-600 transition-all duration-300 hover:text-red-500 hover:scale-150 inline-block"
+            className="text-gray-400 transition-all duration-300 hover:text-cyan-400 hover:scale-150 inline-block"
           >
             .
           </span>
         </h1>
       </div>
       
-      {/* Desktop Icons with Eye Tracking */}
+      {/* Desktop Icons */}
       {folders.map((item) => (
-        <div key={item.id} data-eye-track className="pointer-events-auto">
+        <div key={item.id} className="pointer-events-auto">
           <DraggableFolder
             id={item.id}
             name={item.name}
