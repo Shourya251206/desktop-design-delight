@@ -79,30 +79,28 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-200 via-gray-100 to-gray-300 relative overflow-hidden" 
+    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-200 relative overflow-hidden" 
          style={{
            backgroundImage: `
-             linear-gradient(rgba(0,0,0,.08) 1px, transparent 1px),
-             linear-gradient(90deg, rgba(0,0,0,.08) 1px, transparent 1px),
-             var(--dynamic-background, linear-gradient(135deg, #667eea 0%, #764ba2 100%))
+             linear-gradient(rgba(0,0,0,.02) 1px, transparent 1px),
+             linear-gradient(90deg, rgba(0,0,0,.02) 1px, transparent 1px)
            `,
-           backgroundSize: '24px 24px, 24px 24px, cover',
-           backgroundBlendMode: 'overlay, overlay, normal'
+           backgroundSize: '32px 32px',
          }}>
       
       {/* Dynamic Color Scheme Controller */}
       <DynamicColorScheme isPlaying={isPlaying} currentTime={currentTime} />
       
-      {/* Voice Recognition */}
+      {/* Voice Recognition - moved to center bottom */}
       <VoiceRecognition onCommand={handleVoiceCommand} />
       
-      {/* Eye Tracking Cursor */}
+      {/* Eye Tracking Cursor - simplified */}
       <EyeTrackingCursor />
       
-      {/* 3D Background */}
+      {/* 3D Background - subtle */}
       <Background3D />
       
-      {/* Holographic Effects */}
+      {/* Holographic Effects - reduced */}
       <HolographicElements />
       
       {/* Mac Header Bar */}
@@ -111,7 +109,7 @@ const Index = () => {
       {/* Sticky Note */}
       <StickyNoteComponent />
       
-      {/* Welcome Text with Cool Hover Effect and Eye Tracking */}
+      {/* Welcome Text with Eye Tracking */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
         <h1 className="text-5xl font-light text-gray-700 leading-tight group cursor-pointer">
           <span 
@@ -152,7 +150,7 @@ const Index = () => {
       
       {/* Desktop Icons with Eye Tracking */}
       {folders.map((item) => (
-        <div key={item.id} data-eye-track>
+        <div key={item.id} data-eye-track className="pointer-events-auto">
           <DraggableFolder
             id={item.id}
             name={item.name}
@@ -170,28 +168,32 @@ const Index = () => {
 
       {/* Project Window */}
       {openWindow && (
-        <MacWindow
-          title={getWindowTitle(openWindow)}
-          subtitle="Visual Design & UI"
-          onClose={handleCloseWindow}
-        >
-          <ProjectSidebar 
-            activeProject={activeSection}
-            onSectionClick={setActiveSection}
-          />
-          <ProjectDetail projectId={openWindow} />
-        </MacWindow>
+        <div className="pointer-events-auto">
+          <MacWindow
+            title={getWindowTitle(openWindow)}
+            subtitle="Visual Design & UI"
+            onClose={handleCloseWindow}
+          >
+            <ProjectSidebar 
+              activeProject={activeSection}
+              onSectionClick={setActiveSection}
+            />
+            <ProjectDetail projectId={openWindow} />
+          </MacWindow>
+        </div>
       )}
 
       {/* About Me Windows */}
       {showAboutMe && (
-        <AboutMeWindow 
-          onClose={handleCloseAboutMe}
-          onMusicStateChange={(playing, time) => {
-            setIsPlaying(playing);
-            setCurrentTime(time);
-          }}
-        />
+        <div className="pointer-events-auto">
+          <AboutMeWindow 
+            onClose={handleCloseAboutMe}
+            onMusicStateChange={(playing, time) => {
+              setIsPlaying(playing);
+              setCurrentTime(time);
+            }}
+          />
+        </div>
       )}
     </div>
   );

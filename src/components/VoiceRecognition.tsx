@@ -73,11 +73,11 @@ const VoiceRecognition: React.FC<VoiceRecognitionProps> = ({ onCommand }) => {
   }
 
   return (
-    <div className="fixed top-20 right-4 z-50">
+    <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50">
       <div className="bg-white/10 backdrop-blur-md rounded-full p-3 shadow-lg border border-white/20">
         <button
           onClick={toggleListening}
-          className={`transition-all duration-300 ${
+          className={`transition-all duration-300 pointer-events-auto ${
             isListening 
               ? 'text-red-400 animate-pulse' 
               : 'text-gray-400 hover:text-white'
@@ -89,7 +89,7 @@ const VoiceRecognition: React.FC<VoiceRecognitionProps> = ({ onCommand }) => {
       </div>
       
       {lastCommand && (
-        <div className="mt-2 bg-black/50 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
+        <div className="mt-2 bg-black/50 text-white text-xs px-2 py-1 rounded backdrop-blur-sm text-center">
           "{lastCommand}"
         </div>
       )}
