@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, SkipBack, SkipForward } from 'lucide-react';
 
@@ -6,9 +5,10 @@ interface AudioPlayerProps {
   audioSrc: string;
   title: string;
   artist: string;
+  onStateChange?: (isPlaying: boolean, currentTime: number) => void;
 }
 
-const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title, artist }) => {
+const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title, artist, onStateChange }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -19,9 +19,15 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title, artist }) =>
     const audio = audioRef.current;
     if (!audio) return;
 
-    const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
+    const handleTimeUpdate = () => {
+      setCurrentTime(audio.currentTime);
+      onStateChange?.(isPlaying, audio.currentTime);
+    };
     const handleLoadedMetadata = () => setDuration(audio.duration);
-    const handleEnded = () => setIsPlaying(false);
+    const handleEnded = () => {
+      setIsPlaying(false);
+      onStateChange?.(false, audio.currentTime);
+    };
 
     audio.addEventListener('timeupdate', handleTimeUpdate);
     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
@@ -32,7 +38,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title, artist }) =>
       audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
       audio.removeEventListener('ended', handleEnded);
     };
-  }, []);
+  }, [isPlaying, onStateChange]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -43,7 +49,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc, title, artist }) =>
     } else {
       audio.play();
     }
-    setIsPlaying(!isPlaying);
+    const newIsPlaying = !isPlaying;
+    setIsPlaying(newIsPlaying);
+    onStateChange?.(newIsPlaying, audio.currentTime);
   };
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {

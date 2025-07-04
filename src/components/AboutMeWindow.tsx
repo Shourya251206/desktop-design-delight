@@ -153,9 +153,10 @@ const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className }) => {
 
 interface AboutMeWindowProps {
   onClose: () => void;
+  onMusicStateChange?: (isPlaying: boolean, currentTime: number) => void;
 }
 
-const AboutMeWindow: React.FC<AboutMeWindowProps> = ({ onClose }) => {
+const AboutMeWindow: React.FC<AboutMeWindowProps> = ({ onClose, onMusicStateChange }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="relative w-full h-full max-w-7xl max-h-6xl p-6">
@@ -229,6 +230,7 @@ const AboutMeWindow: React.FC<AboutMeWindowProps> = ({ onClose }) => {
               audioSrc="/counting-stars.mp3"
               title="Counting Stars"
               artist="OneRepublic"
+              onStateChange={onMusicStateChange}
             />
           </div>
         </DraggableWindow>
