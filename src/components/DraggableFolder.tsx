@@ -71,11 +71,11 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
   const getIcon = () => {
     switch (type) {
       case 'file':
-        return <File size={48} className="text-white drop-shadow-sm" fill="currentColor" />;
+        return <File size={48} className="text-black drop-shadow-sm" fill="currentColor" />;
       case 'trash':
-        return <Trash2 size={48} className="text-gray-500 drop-shadow-sm" />;
+        return <Trash2 size={48} className="text-black drop-shadow-sm" />;
       default:
-        return <Folder size={48} className="text-blue-400 drop-shadow-sm" fill="currentColor" />;
+        return <Folder size={48} className="text-black drop-shadow-sm" fill="currentColor" />;
     }
   };
 
@@ -91,15 +91,15 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
       }}
       onMouseDown={handleMouseDown}
     >
-      <div className="p-2 rounded-lg hover:bg-blue-100 hover:bg-opacity-30 transition-colors">
+      <div className="p-2 rounded-lg hover:bg-gray-100 hover:bg-opacity-50 transition-colors">
         {getIcon()}
       </div>
       <div className="text-center">
-        <span className="text-xs text-gray-800 bg-white bg-opacity-70 px-2 py-1 rounded shadow-sm block max-w-24 break-words">
+        <span className="text-xs text-black bg-white bg-opacity-80 px-2 py-1 rounded shadow-sm block max-w-24 break-words border border-gray-200">
           {name}
         </span>
         {subtitle && (
-          <span className="text-xs text-gray-600 bg-white bg-opacity-60 px-1 rounded shadow-sm block max-w-24 break-words mt-1">
+          <span className="text-xs text-gray-700 bg-white bg-opacity-70 px-1 rounded shadow-sm block max-w-24 break-words mt-1 border border-gray-200">
             {subtitle}
           </span>
         )}

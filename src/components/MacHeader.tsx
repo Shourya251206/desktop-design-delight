@@ -26,7 +26,7 @@ const MacHeader: React.FC = () => {
       width="14" 
       height="14" 
       viewBox="0 0 24 24" 
-      className="text-gray-800 hover:text-blue-600 transition-colors duration-300 hover:scale-110 transform"
+      className="text-black hover:text-blue-600 transition-colors duration-300 hover:scale-110 transform"
     >
       <path 
         fill="currentColor" 
@@ -36,21 +36,21 @@ const MacHeader: React.FC = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-7 bg-white bg-opacity-90 backdrop-blur-sm border-b border-gray-200 flex items-center justify-between px-4 text-sm font-medium text-gray-800 z-50">
+    <div className="fixed top-0 left-0 right-0 h-7 bg-white bg-opacity-95 backdrop-blur-sm border-b border-gray-200 flex items-center justify-between px-4 text-sm font-medium text-black z-50">
       {/* Left side */}
       <div className="flex items-center space-x-4">
-        <div className="hover:bg-gray-200 px-1 py-1 rounded transition-all duration-200">
+        <div className="hover:bg-gray-100 px-1 py-1 rounded transition-all duration-200">
           <AppleLogo />
         </div>
         <span className="font-semibold hover:text-blue-600 transition-colors">Shourya Rathi's Portfolio</span>
         <span 
-          className="hover:bg-gray-200 px-2 py-1 rounded cursor-pointer transition-all duration-200 hover:scale-105"
+          className="hover:bg-gray-100 px-2 py-1 rounded cursor-pointer transition-all duration-200 hover:scale-105"
           onClick={handleContactClick}
         >
           Contact
         </span>
         <span 
-          className="hover:bg-gray-200 px-2 py-1 rounded cursor-pointer transition-all duration-200 hover:scale-105"
+          className="hover:bg-gray-100 px-2 py-1 rounded cursor-pointer transition-all duration-200 hover:scale-105"
           onClick={handleResumeClick}
         >
           Resume
@@ -59,11 +59,11 @@ const MacHeader: React.FC = () => {
       
       {/* Right side */}
       <div className="flex items-center space-x-3">
-        <Battery size={14} className="hover:text-green-500 transition-colors cursor-pointer" />
-        <Wifi size={14} className="hover:text-blue-500 transition-colors cursor-pointer" />
-        <Volume2 size={14} className="hover:text-purple-500 transition-colors cursor-pointer" />
-        <Search size={14} className="hover:text-orange-500 transition-colors cursor-pointer" />
-        <span className="text-xs hover:text-blue-600 transition-colors cursor-pointer">{currentTime}</span>
+        <Battery size={14} className="text-black hover:text-green-600 transition-colors cursor-pointer" />
+        <Wifi size={14} className="text-black hover:text-blue-600 transition-colors cursor-pointer" />
+        <Volume2 size={14} className="text-black hover:text-purple-600 transition-colors cursor-pointer" />
+        <Search size={14} className="text-black hover:text-orange-600 transition-colors cursor-pointer" />
+        <span className="text-xs text-black hover:text-blue-600 transition-colors cursor-pointer">{currentTime}</span>
       </div>
     </div>
   );

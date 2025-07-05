@@ -19,8 +19,9 @@ const Background3D: React.FC = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // 3D Math and ML symbols
+    // Math, ML, and Robotics symbols
     const symbols = [
+      // Math symbols
       { char: 'Σ', x: 0, y: 0, z: 0, rotation: 0, speed: 0.01 },
       { char: '∫', x: 0, y: 0, z: 0, rotation: 0, speed: 0.008 },
       { char: '∂', x: 0, y: 0, z: 0, rotation: 0, speed: 0.012 },
@@ -31,6 +32,16 @@ const Background3D: React.FC = () => {
       { char: 'Φ', x: 0, y: 0, z: 0, rotation: 0, speed: 0.006 },
       { char: '∈', x: 0, y: 0, z: 0, rotation: 0, speed: 0.013 },
       { char: '∀', x: 0, y: 0, z: 0, rotation: 0, speed: 0.008 },
+      // ML symbols
+      { char: 'θ', x: 0, y: 0, z: 0, rotation: 0, speed: 0.009 },
+      { char: 'α', x: 0, y: 0, z: 0, rotation: 0, speed: 0.011 },
+      { char: 'β', x: 0, y: 0, z: 0, rotation: 0, speed: 0.007 },
+      { char: 'γ', x: 0, y: 0, z: 0, rotation: 0, speed: 0.012 },
+      { char: 'ε', x: 0, y: 0, z: 0, rotation: 0, speed: 0.008 },
+      // Robotics symbols
+      { char: '⚙', x: 0, y: 0, z: 0, rotation: 0, speed: 0.015 },
+      { char: '🤖', x: 0, y: 0, z: 0, rotation: 0, speed: 0.005 },
+      { char: '⚡', x: 0, y: 0, z: 0, rotation: 0, speed: 0.014 },
     ];
 
     // Initialize positions
@@ -47,7 +58,7 @@ const Background3D: React.FC = () => {
       symbols.forEach((symbol) => {
         // Update rotation and position
         symbol.rotation += symbol.speed;
-        symbol.z -= 0.5;
+        symbol.z -= 0.3; // Slower movement
 
         // Reset if too close
         if (symbol.z <= 0) {
@@ -67,15 +78,12 @@ const Background3D: React.FC = () => {
           ctx.translate(x2d, y2d);
           ctx.rotate(symbol.rotation);
           
-          // Calculate opacity based on distance
-          const opacity = Math.max(0.1, Math.min(0.3, 1 - symbol.z / 1000));
+          // Calculate opacity based on distance - more subtle
+          const opacity = Math.max(0.05, Math.min(0.15, 1 - symbol.z / 1000));
           
-          // Gradient colors
-          const colors = ['#3b82f6', '#8b5cf6', '#06b6d4', '#10b981', '#f59e0b'];
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          
-          ctx.fillStyle = `${color}${Math.floor(opacity * 255).toString(16).padStart(2, '0')}`;
-          ctx.font = `${Math.max(12, scale * 30)}px serif`;
+          // Black color for white background
+          ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
+          ctx.font = `${Math.max(8, scale * 25)}px serif`;
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillText(symbol.char, 0, 0);
@@ -99,7 +107,7 @@ const Background3D: React.FC = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.4 }}
+      style={{ opacity: 0.6 }}
     />
   );
 };

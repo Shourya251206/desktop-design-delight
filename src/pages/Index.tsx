@@ -8,9 +8,7 @@ import ProjectSidebar from '@/components/ProjectSidebar';
 import ProjectDetail from '@/components/ProjectDetail';
 import AboutMeWindow from '@/components/AboutMeWindow';
 import Background3D from '@/components/Background3D';
-import HolographicElements from '@/components/HolographicElements';
 import AIVoiceAssistant from '@/components/AIVoiceAssistant';
-import EyeTrackingCursor from '@/components/EyeTrackingCursor';
 import DynamicColorScheme from '@/components/DynamicColorScheme';
 
 const Index = () => {
@@ -78,7 +76,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
+    <div className="min-h-screen bg-white relative overflow-hidden">
       
       {/* Dynamic Color Scheme Controller */}
       <DynamicColorScheme isPlaying={isPlaying} currentTime={currentTime} />
@@ -86,14 +84,8 @@ const Index = () => {
       {/* AI Voice Assistant - center bottom */}
       <AIVoiceAssistant onCommand={handleVoiceCommand} />
       
-      {/* Simplified Eye Tracking Cursor */}
-      <EyeTrackingCursor />
-      
-      {/* 3D Background - subtle */}
+      {/* 3D Background - math/ML symbols only */}
       <Background3D />
-      
-      {/* Holographic Effects - reduced */}
-      <HolographicElements />
       
       {/* Mac Header Bar */}
       <MacHeader />
@@ -101,34 +93,34 @@ const Index = () => {
       {/* Sticky Note */}
       <StickyNoteComponent />
       
-      {/* Welcome Text - updated for dark theme */}
+      {/* Welcome Text - updated for white theme */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
-        <h1 className="text-5xl font-light text-white leading-tight group cursor-pointer">
+        <h1 className="text-5xl font-light text-black leading-tight group cursor-pointer">
           <span 
-            className="transition-all duration-500 hover:text-cyan-400 hover:scale-110 inline-block hover:rotate-2"
+            className="transition-all duration-500 hover:text-cyan-600 hover:scale-110 inline-block hover:rotate-2"
             style={{ color: 'var(--dynamic-primary, #06b6d4)' }}
           >
             welcome
           </span>{' '}
           <span 
-            className="transition-all duration-500 hover:text-purple-400 hover:scale-110 inline-block hover:-rotate-1"
+            className="transition-all duration-500 hover:text-purple-600 hover:scale-110 inline-block hover:-rotate-1"
             style={{ color: 'var(--dynamic-secondary, #8b5cf6)' }}
           >
             to
           </span>{' '}
           <span 
-            className="transition-all duration-500 hover:text-green-400 hover:scale-110 inline-block hover:rotate-1"
+            className="transition-all duration-500 hover:text-green-600 hover:scale-110 inline-block hover:rotate-1"
             style={{ color: 'var(--dynamic-accent, #10b981)' }}
           >
             my
           </span>{' '}
           <span 
-            className="font-serif font-normal italic text-6xl text-white transition-all duration-700 hover:text-transparent hover:bg-gradient-to-r hover:bg-clip-text hover:from-cyan-400 hover:via-purple-400 hover:to-blue-400 hover:scale-125 inline-block hover:rotate-3"
+            className="font-serif font-normal italic text-6xl text-black transition-all duration-700 hover:text-transparent hover:bg-gradient-to-r hover:bg-clip-text hover:from-cyan-600 hover:via-purple-600 hover:to-blue-600 hover:scale-125 inline-block hover:rotate-3"
           >
             portfolio
           </span>
           <span 
-            className="text-gray-400 transition-all duration-300 hover:text-cyan-400 hover:scale-150 inline-block"
+            className="text-gray-600 transition-all duration-300 hover:text-cyan-600 hover:scale-150 inline-block"
           >
             .
           </span>
