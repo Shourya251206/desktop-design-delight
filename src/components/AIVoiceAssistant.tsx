@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Mic, MicOff, Volume2 } from 'lucide-react';
 
@@ -173,43 +172,72 @@ const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onCommand }) => {
 
   return (
     <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50">
-      <div className="bg-black/90 backdrop-blur-md rounded-full p-4 shadow-lg border border-gray-300">
-        <button
-          onClick={toggleListening}
-          className={`transition-all duration-300 pointer-events-auto relative ${
-            isListening 
-              ? 'text-cyan-400 animate-pulse' 
-              : 'text-gray-300 hover:text-cyan-400'
-          }`}
-          title={isListening ? 'Stop listening - AI Assistant Active' : 'Start AI Voice Assistant'}
-        >
-          {isListening ? <Mic size={24} /> : <MicOff size={24} />}
-          {isProcessing && (
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-400 rounded-full animate-ping" />
-          )}
-        </button>
+      {/* Siri-like design */}
+      <div className="relative">
+        {/* Outer glow ring when listening */}
+        {isListening && (
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-spin opacity-60" 
+               style={{ padding: '3px', animation: 'spin 3s linear infinite' }}>
+            <div className="rounded-full bg-white h-full w-full"></div>
+          </div>
+        )}
+        
+        {/* Main Siri button */}
+        <div className={`relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-full p-4 shadow-xl border-2 transition-all duration-300 ${
+          isListening 
+            ? 'border-blue-400 shadow-blue-400/30 shadow-2xl scale-110' 
+            : 'border-gray-300 hover:border-gray-400 hover:shadow-lg hover:scale-105'
+        }`}>
+          <button
+            onClick={toggleListening}
+            className={`transition-all duration-300 pointer-events-auto relative ${
+              isListening 
+                ? 'text-blue-600' 
+                : 'text-gray-600 hover:text-blue-600'
+            }`}
+            title={isListening ? 'Tap to stop - AI Assistant Active' : 'Tap to speak with AI Assistant'}
+          >
+            {isListening ? <Mic size={28} /> : <MicOff size={28} />}
+            {isProcessing && (
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full animate-ping" />
+            )}
+          </button>
+        </div>
+
+        {/* Animated waves when listening */}
+        {isListening && (
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping opacity-30"></div>
+            <div className="absolute inset-0 rounded-full border-2 border-purple-400 animate-ping opacity-20" style={{ animationDelay: '0.5s' }}></div>
+            <div className="absolute inset-0 rounded-full border-2 border-pink-400 animate-ping opacity-10" style={{ animationDelay: '1s' }}></div>
+          </div>
+        )}
       </div>
       
+      {/* Response bubble - Siri style */}
       {(lastCommand || response) && (
-        <div className="mt-3 bg-white/95 text-black text-sm px-4 py-2 rounded-lg backdrop-blur-sm max-w-xs border border-gray-200 shadow-lg">
+        <div className="mt-4 bg-white/95 text-black text-sm px-6 py-3 rounded-3xl backdrop-blur-sm max-w-sm border border-gray-200 shadow-2xl">
           {lastCommand && (
-            <div className="text-cyan-600 mb-1 font-medium">
-              <Volume2 size={12} className="inline mr-1" />
+            <div className="text-blue-600 mb-2 font-medium flex items-center">
+              <Volume2 size={14} className="inline mr-2" />
               "{lastCommand}"
             </div>
           )}
           {response && (
-            <div className="text-gray-800">
+            <div className="text-gray-800 leading-relaxed">
               {response}
             </div>
           )}
         </div>
       )}
       
+      {/* Status indicator */}
       {isListening && (
-        <div className="mt-2 text-center">
-          <div className="text-cyan-600 text-xs animate-pulse font-medium">
-            🎤 AI Assistant Listening...
+        <div className="mt-3 text-center">
+          <div className="text-blue-600 text-sm font-medium flex items-center justify-center space-x-2">
+            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+            <span>Listening...</span>
+            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
           </div>
         </div>
       )}

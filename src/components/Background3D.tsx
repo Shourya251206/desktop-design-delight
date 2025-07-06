@@ -19,71 +19,88 @@ const Background3D: React.FC = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Math, ML, and Robotics symbols
-    const symbols = [
-      // Math symbols
-      { char: 'Σ', x: 0, y: 0, z: 0, rotation: 0, speed: 0.01 },
-      { char: '∫', x: 0, y: 0, z: 0, rotation: 0, speed: 0.008 },
-      { char: '∂', x: 0, y: 0, z: 0, rotation: 0, speed: 0.012 },
-      { char: 'π', x: 0, y: 0, z: 0, rotation: 0, speed: 0.009 },
-      { char: '∞', x: 0, y: 0, z: 0, rotation: 0, speed: 0.007 },
+    // Single prominent 3D figure - a mathematical integral symbol
+    const prominentFigure = {
+      char: '∫',
+      x: canvas.width * 0.15, // Position on left side
+      y: canvas.height * 0.5, // Center vertically
+      rotation: 0,
+      scale: 1,
+      opacity: 0.15,
+      rotationSpeed: 0.005,
+      pulseSpeed: 0.02,
+      time: 0
+    };
+
+    // Smaller background symbols
+    const backgroundSymbols = [
+      { char: 'Σ', x: 0, y: 0, z: 0, rotation: 0, speed: 0.008 },
+      { char: '∂', x: 0, y: 0, z: 0, rotation: 0, speed: 0.010 },
+      { char: 'π', x: 0, y: 0, z: 0, rotation: 0, speed: 0.007 },
+      { char: '∞', x: 0, y: 0, z: 0, rotation: 0, speed: 0.009 },
       { char: '∇', x: 0, y: 0, z: 0, rotation: 0, speed: 0.011 },
-      { char: 'λ', x: 0, y: 0, z: 0, rotation: 0, speed: 0.010 },
+      { char: 'λ', x: 0, y: 0, z: 0, rotation: 0, speed: 0.008 },
       { char: 'Φ', x: 0, y: 0, z: 0, rotation: 0, speed: 0.006 },
-      { char: '∈', x: 0, y: 0, z: 0, rotation: 0, speed: 0.013 },
-      { char: '∀', x: 0, y: 0, z: 0, rotation: 0, speed: 0.008 },
-      // ML symbols
       { char: 'θ', x: 0, y: 0, z: 0, rotation: 0, speed: 0.009 },
-      { char: 'α', x: 0, y: 0, z: 0, rotation: 0, speed: 0.011 },
+      { char: 'α', x: 0, y: 0, z: 0, rotation: 0, speed: 0.010 },
       { char: 'β', x: 0, y: 0, z: 0, rotation: 0, speed: 0.007 },
-      { char: 'γ', x: 0, y: 0, z: 0, rotation: 0, speed: 0.012 },
-      { char: 'ε', x: 0, y: 0, z: 0, rotation: 0, speed: 0.008 },
-      // Robotics symbols
-      { char: '⚙', x: 0, y: 0, z: 0, rotation: 0, speed: 0.015 },
-      { char: '🤖', x: 0, y: 0, z: 0, rotation: 0, speed: 0.005 },
+      { char: '⚙', x: 0, y: 0, z: 0, rotation: 0, speed: 0.012 },
       { char: '⚡', x: 0, y: 0, z: 0, rotation: 0, speed: 0.014 },
     ];
 
-    // Initialize positions
-    symbols.forEach((symbol, i) => {
+    // Initialize positions for background symbols
+    backgroundSymbols.forEach((symbol, i) => {
       symbol.x = (Math.random() - 0.5) * canvas.width;
       symbol.y = (Math.random() - 0.5) * canvas.height;
-      symbol.z = Math.random() * 1000 + 100;
+      symbol.z = Math.random() * 800 + 200;
     });
 
     let animationId: number;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      symbols.forEach((symbol) => {
-        // Update rotation and position
-        symbol.rotation += symbol.speed;
-        symbol.z -= 0.3; // Slower movement
+      // Update and draw prominent figure
+      prominentFigure.time += prominentFigure.pulseSpeed;
+      prominentFigure.rotation += prominentFigure.rotationSpeed;
+      prominentFigure.scale = 1 + Math.sin(prominentFigure.time) * 0.1; // Gentle pulsing
 
-        // Reset if too close
+      ctx.save();
+      ctx.translate(prominentFigure.x, prominentFigure.y);
+      ctx.rotate(prominentFigure.rotation);
+      ctx.scale(prominentFigure.scale, prominentFigure.scale);
+      
+      ctx.fillStyle = `rgba(0, 0, 0, ${prominentFigure.opacity})`;
+      ctx.font = '200px serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(prominentFigure.char, 0, 0);
+      
+      ctx.restore();
+
+      // Update and draw background symbols
+      backgroundSymbols.forEach((symbol) => {
+        symbol.rotation += symbol.speed;
+        symbol.z -= 0.2;
+
         if (symbol.z <= 0) {
-          symbol.z = 1000;
+          symbol.z = 800;
           symbol.x = (Math.random() - 0.5) * canvas.width;
           symbol.y = (Math.random() - 0.5) * canvas.height;
         }
 
-        // 3D projection
-        const scale = 200 / symbol.z;
+        const scale = 150 / symbol.z;
         const x2d = symbol.x * scale + canvas.width / 2;
         const y2d = symbol.y * scale + canvas.height / 2;
 
-        // Only draw if within canvas bounds
         if (x2d > -50 && x2d < canvas.width + 50 && y2d > -50 && y2d < canvas.height + 50) {
           ctx.save();
           ctx.translate(x2d, y2d);
           ctx.rotate(symbol.rotation);
           
-          // Calculate opacity based on distance - more subtle
-          const opacity = Math.max(0.05, Math.min(0.15, 1 - symbol.z / 1000));
+          const opacity = Math.max(0.03, Math.min(0.08, 1 - symbol.z / 800));
           
-          // Black color for white background
           ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
-          ctx.font = `${Math.max(8, scale * 25)}px serif`;
+          ctx.font = `${Math.max(12, scale * 30)}px serif`;
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillText(symbol.char, 0, 0);
@@ -107,7 +124,7 @@ const Background3D: React.FC = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.8 }}
     />
   );
 };
