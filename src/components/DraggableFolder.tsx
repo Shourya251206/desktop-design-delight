@@ -69,14 +69,14 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
   }, [isDragging, dragStart, hasMoved]);
 
   const getIcon = () => {
-    const iconClass = "drop-shadow-lg hover-scale transition-all duration-300";
+    const iconClass = "drop-shadow-sm hover-scale transition-all duration-300";
     switch (type) {
       case 'file':
-        return <File size={48} className={`text-primary ${iconClass}`} fill="currentColor" />;
+        return <File size={48} className={`text-muted-foreground ${iconClass}`} fill="currentColor" />;
       case 'trash':
         return <Trash2 size={48} className={`text-destructive ${iconClass}`} />;
       default:
-        return <Folder size={48} className={`text-secondary ${iconClass}`} fill="currentColor" />;
+        return <Folder size={48} className={`text-muted-foreground ${iconClass}`} fill="currentColor" />;
     }
   };
 

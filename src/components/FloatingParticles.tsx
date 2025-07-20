@@ -30,26 +30,26 @@ const FloatingParticles: React.FC = () => {
     }> = [];
 
     const colors = [
-      'hsla(197, 71%, 73%, 0.6)',
-      'hsla(271, 81%, 76%, 0.6)',
-      'hsla(142, 76%, 73%, 0.6)',
+      'hsla(220, 13%, 91%, 0.4)',
+      'hsla(220, 8.9%, 46.1%, 0.2)',
+      'hsla(220, 14.3%, 95.9%, 0.6)',
     ];
 
     // Create particles
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 30; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 3 + 1,
-        opacity: Math.random() * 0.5 + 0.2,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 2 + 0.5,
+        opacity: Math.random() * 0.3 + 0.1,
         color: colors[Math.floor(Math.random() * colors.length)],
       });
     }
 
     const animate = () => {
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.01)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle) => {
@@ -68,7 +68,7 @@ const FloatingParticles: React.FC = () => {
         ctx.fill();
 
         // Add subtle glow
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 5;
         ctx.shadowColor = particle.color;
         ctx.fill();
         ctx.shadowBlur = 0;
