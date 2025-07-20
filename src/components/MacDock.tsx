@@ -62,16 +62,20 @@ const MacDock: React.FC = () => {
 
   return (
     <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
-      <div className="bg-white bg-opacity-80 backdrop-blur-md rounded-2xl px-3 py-2 shadow-lg border border-gray-200">
-        <div className="flex items-center space-x-2">
+      <div className="glass-effect rounded-2xl px-4 py-3 hover-glow" style={{ boxShadow: 'var(--shadow-medium)' }}>
+        <div className="flex items-center space-x-3">
           {dockApps.map((app, index) => (
             <div
               key={index}
-              className="w-12 h-12 bg-white bg-opacity-90 rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-200 cursor-pointer shadow-sm border border-gray-100"
+              className="w-14 h-14 glass-effect rounded-xl flex items-center justify-center hover-scale cursor-pointer hover-glow border border-border/50"
               title={app.name}
               onClick={app.onClick}
+              style={{ 
+                boxShadow: 'var(--shadow-soft)',
+                transition: 'var(--transition-bounce)'
+              }}
             >
-              <app.icon size={24} className={app.color} />
+              <app.icon size={26} className="text-foreground hover:text-primary transition-colors" />
             </div>
           ))}
         </div>

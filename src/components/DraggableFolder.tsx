@@ -69,13 +69,14 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
   }, [isDragging, dragStart, hasMoved]);
 
   const getIcon = () => {
+    const iconClass = "drop-shadow-lg hover-scale transition-all duration-300";
     switch (type) {
       case 'file':
-        return <File size={48} className="text-black drop-shadow-sm" fill="currentColor" />;
+        return <File size={48} className={`text-primary ${iconClass}`} fill="currentColor" />;
       case 'trash':
-        return <Trash2 size={48} className="text-black drop-shadow-sm" />;
+        return <Trash2 size={48} className={`text-destructive ${iconClass}`} />;
       default:
-        return <Folder size={48} className="text-black drop-shadow-sm" fill="currentColor" />;
+        return <Folder size={48} className={`text-secondary ${iconClass}`} fill="currentColor" />;
     }
   };
 
@@ -91,15 +92,15 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
       }}
       onMouseDown={handleMouseDown}
     >
-      <div className="p-2 rounded-lg hover:bg-gray-100 hover:bg-opacity-50 transition-colors">
+      <div className="p-3 rounded-xl glass-effect hover-glow hover-scale group" style={{ boxShadow: 'var(--shadow-soft)' }}>
         {getIcon()}
       </div>
-      <div className="text-center">
-        <span className="text-xs text-black bg-white bg-opacity-80 px-2 py-1 rounded shadow-sm block max-w-24 break-words border border-gray-200">
+      <div className="text-center mt-2">
+        <span className="text-xs text-foreground glass-effect px-3 py-1 rounded-lg block max-w-28 break-words border border-border/50 hover-scale font-medium">
           {name}
         </span>
         {subtitle && (
-          <span className="text-xs text-gray-700 bg-white bg-opacity-70 px-1 rounded shadow-sm block max-w-24 break-words mt-1 border border-gray-200">
+          <span className="text-xs text-muted-foreground glass-effect px-2 py-0.5 rounded-md block max-w-28 break-words mt-1 border border-border/30 hover-scale">
             {subtitle}
           </span>
         )}

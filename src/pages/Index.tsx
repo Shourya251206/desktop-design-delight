@@ -10,6 +10,7 @@ import AboutMeWindow from '@/components/AboutMeWindow';
 import Background3D from '@/components/Background3D';
 import AIVoiceAssistant from '@/components/AIVoiceAssistant';
 import DynamicColorScheme from '@/components/DynamicColorScheme';
+import FloatingParticles from '@/components/FloatingParticles';
 
 const Index = () => {
   const [folders] = useState([
@@ -76,7 +77,10 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden" style={{ background: 'var(--dynamic-background)' }}>
+      
+      {/* Floating Particles Background */}
+      <FloatingParticles />
       
       {/* Dynamic Color Scheme Controller */}
       <DynamicColorScheme isPlaying={isPlaying} currentTime={currentTime} />
@@ -93,38 +97,41 @@ const Index = () => {
       {/* Sticky Note */}
       <StickyNoteComponent />
       
-      {/* Welcome Text - updated for white theme */}
+      {/* Enhanced Welcome Text with beautiful gradients */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
-        <h1 className="text-5xl font-light text-black leading-tight group cursor-pointer">
-          <span 
-            className="transition-all duration-500 hover:text-cyan-600 hover:scale-110 inline-block hover:rotate-2"
-            style={{ color: 'var(--dynamic-primary, #06b6d4)' }}
-          >
-            welcome
-          </span>{' '}
-          <span 
-            className="transition-all duration-500 hover:text-purple-600 hover:scale-110 inline-block hover:-rotate-1"
-            style={{ color: 'var(--dynamic-secondary, #8b5cf6)' }}
-          >
-            to
-          </span>{' '}
-          <span 
-            className="transition-all duration-500 hover:text-green-600 hover:scale-110 inline-block hover:rotate-1"
-            style={{ color: 'var(--dynamic-accent, #10b981)' }}
-          >
-            my
-          </span>{' '}
-          <span 
-            className="font-serif font-normal italic text-6xl text-black transition-all duration-700 hover:text-transparent hover:bg-gradient-to-r hover:bg-clip-text hover:from-cyan-600 hover:via-purple-600 hover:to-blue-600 hover:scale-125 inline-block hover:rotate-3"
-          >
-            portfolio
-          </span>
-          <span 
-            className="text-gray-600 transition-all duration-300 hover:text-cyan-600 hover:scale-150 inline-block"
-          >
-            .
-          </span>
-        </h1>
+        <div className="glass-effect rounded-3xl p-8 hover-glow">
+          <h1 className="text-6xl font-light leading-tight group cursor-pointer">
+            <span 
+              className="hover-scale inline-block transition-all duration-500 hover:rotate-2"
+              style={{ color: 'var(--dynamic-primary)' }}
+            >
+              welcome
+            </span>{' '}
+            <span 
+              className="hover-scale inline-block transition-all duration-500 hover:-rotate-1"
+              style={{ color: 'var(--dynamic-secondary)' }}
+            >
+              to
+            </span>{' '}
+            <span 
+              className="hover-scale inline-block transition-all duration-500 hover:rotate-1"
+              style={{ color: 'var(--dynamic-accent)' }}
+            >
+              my
+            </span>{' '}
+            <span 
+              className="font-serif font-medium italic text-7xl gradient-text hover-scale inline-block transition-all duration-700 hover:rotate-3"
+            >
+              portfolio
+            </span>
+            <span 
+              className="text-muted-foreground hover-scale inline-block transition-all duration-300"
+            >
+              .
+            </span>
+          </h1>
+          <div className="mt-4 shimmer-effect h-1 w-32 mx-auto rounded-full"></div>
+        </div>
       </div>
       
       {/* Desktop Icons */}

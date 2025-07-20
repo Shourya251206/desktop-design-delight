@@ -36,21 +36,21 @@ const MacHeader: React.FC = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-7 bg-white bg-opacity-95 backdrop-blur-sm border-b border-gray-200 flex items-center justify-between px-4 text-sm font-medium text-black z-50">
+    <div className="fixed top-0 left-0 right-0 h-7 glass-effect border-b border-border flex items-center justify-between px-4 text-sm font-medium text-foreground z-50 hover-glow">
       {/* Left side */}
       <div className="flex items-center space-x-4">
-        <div className="hover:bg-gray-100 px-1 py-1 rounded transition-all duration-200">
+        <div className="hover:bg-primary/10 px-1 py-1 rounded hover-scale">
           <AppleLogo />
         </div>
-        <span className="font-semibold hover:text-blue-600 transition-colors">Shourya Rathi's Portfolio</span>
+        <span className="font-semibold gradient-text">Shourya Rathi's Portfolio</span>
         <span 
-          className="hover:bg-gray-100 px-2 py-1 rounded cursor-pointer transition-all duration-200 hover:scale-105"
+          className="hover:bg-primary/10 px-2 py-1 rounded cursor-pointer hover-scale text-muted-foreground hover:text-primary"
           onClick={handleContactClick}
         >
           Contact
         </span>
         <span 
-          className="hover:bg-gray-100 px-2 py-1 rounded cursor-pointer transition-all duration-200 hover:scale-105"
+          className="hover:bg-secondary/10 px-2 py-1 rounded cursor-pointer hover-scale text-muted-foreground hover:text-secondary"
           onClick={handleResumeClick}
         >
           Resume
@@ -59,11 +59,11 @@ const MacHeader: React.FC = () => {
       
       {/* Right side */}
       <div className="flex items-center space-x-3">
-        <Battery size={14} className="text-black hover:text-green-600 transition-colors cursor-pointer" />
-        <Wifi size={14} className="text-black hover:text-blue-600 transition-colors cursor-pointer" />
-        <Volume2 size={14} className="text-black hover:text-purple-600 transition-colors cursor-pointer" />
-        <Search size={14} className="text-black hover:text-orange-600 transition-colors cursor-pointer" />
-        <span className="text-xs text-black hover:text-blue-600 transition-colors cursor-pointer">{currentTime}</span>
+        <Battery size={14} className="text-muted-foreground hover:text-accent hover-scale cursor-pointer" />
+        <Wifi size={14} className="text-muted-foreground hover:text-primary hover-scale cursor-pointer" />
+        <Volume2 size={14} className="text-muted-foreground hover:text-secondary hover-scale cursor-pointer" />
+        <Search size={14} className="text-muted-foreground hover:text-accent hover-scale cursor-pointer" />
+        <span className="text-xs text-muted-foreground hover:text-primary hover-scale cursor-pointer">{currentTime}</span>
       </div>
     </div>
   );
