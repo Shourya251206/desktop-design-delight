@@ -12,38 +12,102 @@ const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onCommand }) => {
   const [response, setResponse] = useState<string>('');
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Personal data about you
+  // Comprehensive personal data about Shourya Rathi
   const personalData = {
+    fullBio: "Shourya Rathi is an ambitious and multidisciplinary undergraduate student majoring in Computer Science with minors in Robotics and Mathematics at the University of Utah, starting in Fall 2025 as a transfer student. He is deeply passionate about artificial intelligence, machine learning, robotics, and their applications across domains such as energy, healthcare, finance, and human-computer interaction. With a strong foundation in Python, C++, Java, SQL, and emerging platforms like ROS, TensorFlow, PyTorch, and OpenAI APIs, Shourya has already amassed a broad spectrum of real-world experience. He worked as an AI Intern at Nihilent, where he deployed an AI-powered code conversion tool using OpenAI and Code Llama, integrated SAP Joule into iOS tools, and containerized backend systems with Docker, significantly improving developer efficiency and deployment time. He was selected for competitive job shadow programs at IBM and Wells Fargo, where he explored enterprise backend systems, modeled sentiment analysis for financial applications, and presented insights in agile settings. Shourya also conducted undergraduate research under an AI professor, leading a 10-member team to build AI-augmented mixed reality visualizations that improved rendering efficiency by 35%. His project portfolio includes a multi-stage e-commerce recommender system built with hybrid ML models, a bimanual robot trained with reinforcement learning in simulated environments, and a zero-shot indoor navigation system using GPT + CLIP for smart homes. Beyond tech, Shourya has shown leadership and teaching ability as a private math and physics tutor, mentoring over 50 students across four years and designing reusable learning systems for coaching centers. He has been awarded scholarships and certificates for innovation and academic excellence, including the School of Mining & Mineral Resources scholarship and the Health Science Design Innovation certificate. Shourya is highly driven to pursue research opportunities that fuse intelligent systems, robotics, and real-world problem-solving, with a long-term vision of joining a top-tier graduate program in AI and contributing to impactful technologies on a global scale. He is proactive, self-taught in many tools, committed to continuous learning, and eager to collaborate with leading researchers across domains.",
+    
     name: "Shourya Rathi",
-    profession: "Software Developer/Engineer",
-    skills: ["React", "TypeScript", "JavaScript", "Python", "Machine Learning", "AI", "Web Development", "Full Stack Development"],
-    projects: [
+    education: {
+      university: "University of Utah",
+      major: "Computer Science",
+      minors: ["Robotics", "Mathematics"],
+      startDate: "Fall 2025",
+      status: "Transfer student"
+    },
+    
+    skills: {
+      programming: ["Python", "C++", "Java", "SQL"],
+      platforms: ["ROS", "TensorFlow", "PyTorch", "OpenAI APIs", "Docker"],
+      domains: ["AI", "Machine Learning", "Robotics", "Web Development"]
+    },
+    
+    workExperience: [
       {
-        name: "AbsolutMess",
-        description: "A comprehensive project management and organization tool",
-        technologies: ["React", "TypeScript", "Node.js"]
+        role: "AI Intern",
+        company: "Nihilent",
+        achievements: [
+          "Deployed AI-powered code conversion tool using OpenAI and Code Llama",
+          "Integrated SAP Joule into iOS tools",
+          "Containerized backend systems with Docker",
+          "Significantly improved developer efficiency and deployment time"
+        ]
       },
       {
-        name: "Simplingo", 
-        description: "An innovative language learning application with interactive features",
-        technologies: ["React", "AI/ML", "Natural Language Processing"]
+        role: "Job Shadow Participant",
+        companies: ["IBM", "Wells Fargo"],
+        activities: [
+          "Explored enterprise backend systems",
+          "Modeled sentiment analysis for financial applications", 
+          "Presented insights in agile settings"
+        ]
+      }
+    ],
+    
+    research: {
+      role: "Undergraduate Research Lead",
+      project: "AI-augmented mixed reality visualizations",
+      teamSize: "10 members",
+      achievement: "Improved rendering efficiency by 35%"
+    },
+    
+    projects: [
+      {
+        name: "Multi-stage E-commerce Recommender System",
+        description: "Built with hybrid ML models",
+        technologies: ["Machine Learning", "Hybrid Models"]
+      },
+      {
+        name: "Bimanual Robot",
+        description: "Trained with reinforcement learning in simulated environments",
+        technologies: ["Robotics", "Reinforcement Learning", "Simulation"]
+      },
+      {
+        name: "Zero-shot Indoor Navigation System", 
+        description: "Using GPT + CLIP for smart homes",
+        technologies: ["GPT", "CLIP", "Computer Vision", "Smart Home Tech"]
+      },
+      {
+        name: "AbsolutMess",
+        description: "Project management and organization tool",
+        technologies: ["React", "TypeScript", "Full Stack"]
+      },
+      {
+        name: "Simplingo",
+        description: "Language learning application",
+        technologies: ["React", "AI/ML", "NLP"]
       },
       {
         name: "Leafpress",
-        description: "Modern content management system with advanced features",
+        description: "Content management system",
         technologies: ["React", "TypeScript", "Backend APIs"]
-      },
-      {
-        name: "Amazon Project",
-        description: "E-commerce related project with scalable architecture",
-        technologies: ["Full Stack", "Database Management", "API Integration"]
       }
     ],
-    education: "Computer Science background with focus on AI and Machine Learning",
-    experience: "Full Stack Developer with expertise in modern web technologies",
-    interests: ["Robotics", "Mathematics", "Machine Learning", "Artificial Intelligence", "Web Development"],
-    contact: "shouryarathi2006@gmail.com",
-    location: "Available for remote and on-site opportunities"
+    
+    teaching: {
+      role: "Private Math and Physics Tutor",
+      students: "Over 50 students",
+      duration: "Four years",
+      achievements: "Designed reusable learning systems for coaching centers"
+    },
+    
+    awards: [
+      "School of Mining & Mineral Resources scholarship",
+      "Health Science Design Innovation certificate"
+    ],
+    
+    interests: ["Energy", "Healthcare", "Finance", "Human-Computer Interaction"],
+    goals: "Pursue research opportunities that fuse intelligent systems, robotics, and real-world problem-solving, with a long-term vision of joining a top-tier graduate program in AI",
+    contact: "shouryarathi2006@gmail.com"
   };
 
   useEffect(() => {
@@ -107,33 +171,73 @@ const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onCommand }) => {
     try {
       let aiResponse = '';
       
-      // Personal data queries
-      if (query.includes('skills') || query.includes('what can') || query.includes('technologies')) {
-        aiResponse = `Shourya specializes in ${personalData.skills.join(', ')}. He has strong expertise in full-stack development with a focus on modern web technologies and AI/ML applications.`;
-      } else if (query.includes('projects') || query.includes('work') || query.includes('portfolio')) {
-        aiResponse = `Shourya has worked on several impressive projects: ${personalData.projects.map(p => `${p.name} - ${p.description}`).join('; ')}. Each project showcases different aspects of his development skills.`;
-      } else if (query.includes('education') || query.includes('background') || query.includes('study')) {
-        aiResponse = `Shourya has ${personalData.education} and works as a ${personalData.profession}. He's passionate about ${personalData.interests.join(', ')}.`;
-      } else if (query.includes('contact') || query.includes('reach') || query.includes('email')) {
-        aiResponse = `You can reach Shourya at ${personalData.contact}. He's ${personalData.location}.`;
-      } else if (query.includes('experience') || query.includes('professional')) {
-        aiResponse = `Shourya is a ${personalData.experience} with hands-on experience in building scalable applications and working with cutting-edge technologies.`;
-      } else if (query.includes('interests') || query.includes('passionate') || query.includes('hobby')) {
-        aiResponse = `Shourya is passionate about ${personalData.interests.join(', ')}. He combines his technical skills with these interests in his projects.`;
-      } else if (query.includes('name') || query.includes('who are you') || query.includes('introduce')) {
-        aiResponse = `I'm ${personalData.name}'s AI assistant! Shourya is a ${personalData.profession} specializing in ${personalData.skills.slice(0, 3).join(', ')} and more. Feel free to ask me anything about his work!`;
-      } 
-      // Generic responses for non-personal queries
-      else if (query.includes('weather')) {
-        aiResponse = 'I can only provide information about Shourya Rathi and his work. For weather updates, please check your weather app or ask a general AI assistant.';
-      } else if (query.includes('cricket') || query.includes('sports') || query.includes('score')) {
-        aiResponse = 'I\'m specialized in answering questions about Shourya\'s professional background and projects. For sports updates, please use a sports app or general search.';
-      } else if (query.includes('news') || query.includes('current events')) {
-        aiResponse = 'I focus on Shourya\'s portfolio and professional information. For current news, please check a news website or general AI assistant.';
-      } else if (query.includes('time') || query.includes('date')) {
-        aiResponse = 'I\'m here to help with questions about Shourya\'s work and background. For current time and date, please check your device.';
-      } else {
-        aiResponse = `I heard "${query}". I'm Shourya's personal AI assistant and I can tell you about his skills, projects, experience, and background. Try asking about his projects, technical skills, or professional experience!`;
+      // Education queries
+      if (query.includes('education') || query.includes('university') || query.includes('college') || query.includes('study') || query.includes('degree')) {
+        aiResponse = `Shourya is majoring in Computer Science with minors in Robotics and Mathematics at the University of Utah, starting Fall 2025 as a transfer student.`;
+      }
+      // Skills and programming queries
+      else if (query.includes('skills') || query.includes('programming') || query.includes('technologies') || query.includes('what can')) {
+        aiResponse = `Shourya has strong programming skills in ${personalData.skills.programming.join(', ')} and works with platforms like ${personalData.skills.platforms.join(', ')}. He specializes in ${personalData.skills.domains.join(', ')}.`;
+      }
+      // Work experience queries
+      else if (query.includes('work') || query.includes('experience') || query.includes('job') || query.includes('intern') || query.includes('nihilent')) {
+        aiResponse = `Shourya worked as an AI Intern at Nihilent where he deployed AI-powered code conversion tools, integrated SAP Joule into iOS tools, and containerized backend systems with Docker. He also participated in job shadow programs at IBM and Wells Fargo, working on enterprise systems and sentiment analysis.`;
+      }
+      // Research queries
+      else if (query.includes('research') || query.includes('mixed reality') || query.includes('team lead')) {
+        aiResponse = `Shourya conducted undergraduate research leading a 10-member team to build AI-augmented mixed reality visualizations that improved rendering efficiency by 35%.`;
+      }
+      // Projects queries
+      else if (query.includes('projects') || query.includes('portfolio') || query.includes('built') || query.includes('developed')) {
+        const projectNames = personalData.projects.map(p => p.name).join(', ');
+        aiResponse = `Shourya has built impressive projects including: ${projectNames}. Notable ones are a multi-stage e-commerce recommender system with hybrid ML models, a bimanual robot trained with reinforcement learning, and a zero-shot indoor navigation system using GPT + CLIP for smart homes.`;
+      }
+      // Teaching queries
+      else if (query.includes('teaching') || query.includes('tutor') || query.includes('mentor') || query.includes('students')) {
+        aiResponse = `Shourya has been a private math and physics tutor for four years, mentoring over 50 students and designing reusable learning systems for coaching centers.`;
+      }
+      // Awards queries
+      else if (query.includes('awards') || query.includes('scholarship') || query.includes('certificate') || query.includes('achievement')) {
+        aiResponse = `Shourya has received the School of Mining & Mineral Resources scholarship and the Health Science Design Innovation certificate for his academic excellence and innovation.`;
+      }
+      // Goals and future queries
+      else if (query.includes('goals') || query.includes('future') || query.includes('graduate') || query.includes('vision') || query.includes('plans')) {
+        aiResponse = `Shourya is highly driven to pursue research opportunities that fuse intelligent systems, robotics, and real-world problem-solving, with a long-term vision of joining a top-tier graduate program in AI and contributing to impactful technologies on a global scale.`;
+      }
+      // Contact queries
+      else if (query.includes('contact') || query.includes('email') || query.includes('reach')) {
+        aiResponse = `You can contact Shourya at ${personalData.contact}.`;
+      }
+      // Interest and passion queries
+      else if (query.includes('interests') || query.includes('passionate') || query.includes('domains') || query.includes('applications')) {
+        aiResponse = `Shourya is passionate about AI, ML, and robotics applications across domains like ${personalData.interests.join(', ')}. He's particularly interested in human-computer interaction and intelligent systems.`;
+      }
+      // Name and introduction queries
+      else if (query.includes('name') || query.includes('who are you') || query.includes('introduce') || query.includes('tell me about')) {
+        aiResponse = `I'm ${personalData.name}'s AI assistant! Shourya is an ambitious Computer Science student with minors in Robotics and Mathematics, passionate about AI, ML, and robotics. He has hands-on experience as an AI intern, research leader, and has built impressive projects combining AI with real-world applications.`;
+      }
+      // Specific project queries
+      else if (query.includes('absolutmess') || query.includes('simplingo') || query.includes('leafpress')) {
+        const project = personalData.projects.find(p => 
+          query.includes(p.name.toLowerCase()) || 
+          query.toLowerCase().includes(p.name.toLowerCase())
+        );
+        if (project) {
+          aiResponse = `${project.name} is ${project.description} built using ${project.technologies.join(', ')}.`;
+        } else {
+          aiResponse = "I can tell you about Shourya's projects: AbsolutMess, Simplingo, Leafpress, and his AI/ML projects like the e-commerce recommender system and bimanual robot.";
+        }
+      }
+      // Generic rejection for non-personal queries
+      else if (query.includes('weather') || query.includes('time') || query.includes('date') || query.includes('news') || 
+               query.includes('sports') || query.includes('cricket') || query.includes('movie') || query.includes('music') ||
+               query.includes('cook') || query.includes('recipe') || query.includes('travel') || query.includes('stock') ||
+               query.includes('politics') || query.includes('history') || query.includes('geography')) {
+        aiResponse = "I can't answer that question. I'm specifically designed to answer questions about Shourya Rathi's education, work experience, projects, skills, and professional background only.";
+      }
+      // Default response for unclear queries
+      else {
+        aiResponse = `I heard "${query}". I can only answer questions about Shourya Rathi's education, work experience, research, projects, skills, teaching experience, awards, and professional goals. Please ask me something specific about Shourya's background!`;
       }
       
       setResponse(aiResponse);
@@ -149,7 +253,7 @@ const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onCommand }) => {
       
     } catch (error) {
       console.error('AI processing error:', error);
-      setResponse('Sorry, I had trouble processing that request. Please try asking about Shourya\'s skills, projects, or experience.');
+      setResponse("I can't answer that question. I'm specifically designed to answer questions about Shourya Rathi only.");
     }
   };
 
