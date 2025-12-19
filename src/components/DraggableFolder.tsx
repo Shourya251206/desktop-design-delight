@@ -1,6 +1,5 @@
-
 import React, { useState, useRef } from 'react';
-import { Folder, File, Trash2 } from 'lucide-react';
+import { Folder, FileText, Trash2 } from 'lucide-react';
 
 interface DraggableFolderProps {
   id: string;
@@ -15,7 +14,6 @@ interface DraggableFolderProps {
 const DraggableFolder: React.FC<DraggableFolderProps> = ({ 
   id, 
   name, 
-  subtitle,
   type,
   initialX, 
   initialY,
@@ -39,7 +37,6 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging) return;
-    
     setHasMoved(true);
     setPosition({
       x: e.clientX - dragStart.x,
@@ -49,8 +46,6 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
 
   const handleMouseUp = () => {
     setIsDragging(false);
-    
-    // If the mouse didn't move much, treat it as a click
     if (!hasMoved && onClick) {
       onClick(id);
     }
@@ -60,7 +55,6 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
-      
       return () => {
         document.removeEventListener('mousemove', handleMouseMove);
         document.removeEventListener('mouseup', handleMouseUp);
@@ -69,42 +63,29 @@ const DraggableFolder: React.FC<DraggableFolderProps> = ({
   }, [isDragging, dragStart, hasMoved]);
 
   const getIcon = () => {
-    const iconClass = "drop-shadow-sm hover-scale transition-all duration-300";
     switch (type) {
       case 'file':
-        return <File size={48} className={`text-muted-foreground ${iconClass}`} fill="currentColor" />;
+        return <FileText size={40} className="text-gray-500" />;
       case 'trash':
-        return <Trash2 size={48} className={`text-destructive ${iconClass}`} />;
+        return <Trash2 size={40} className="text-gray-400" />;
       default:
-        return <Folder size={48} className={`text-muted-foreground ${iconClass}`} fill="currentColor" />;
+        return <Folder size={40} className="text-blue-500" fill="#3B82F6" />;
     }
   };
 
   return (
     <div
       ref={folderRef}
-      className={`absolute flex flex-col items-center cursor-pointer select-none ${
-        isDragging ? 'z-50' : 'z-10'
-      }`}
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-      }}
+      className={`absolute flex flex-col items-center cursor-pointer select-none ${isDragging ? 'z-50' : 'z-10'}`}
+      style={{ left: position.x, top: position.y }}
       onMouseDown={handleMouseDown}
     >
-      <div className="p-3 rounded-xl glass-effect hover-glow hover-scale group" style={{ boxShadow: 'var(--shadow-soft)' }}>
+      <div className="p-2 rounded-lg hover:bg-black/5 transition-colors">
         {getIcon()}
       </div>
-      <div className="text-center mt-2">
-        <span className="text-xs text-foreground glass-effect px-3 py-1 rounded-lg block max-w-28 break-words border border-border/50 hover-scale font-medium">
-          {name}
-        </span>
-        {subtitle && (
-          <span className="text-xs text-muted-foreground glass-effect px-2 py-0.5 rounded-md block max-w-28 break-words mt-1 border border-border/30 hover-scale">
-            {subtitle}
-          </span>
-        )}
-      </div>
+      <span className="text-xs text-gray-700 font-medium text-center max-w-20 mt-1">
+        {name}
+      </span>
     </div>
   );
 };
